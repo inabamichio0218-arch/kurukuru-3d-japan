@@ -46,16 +46,21 @@ function stopSpin(){if(animationId){cancelAnimationFrame(animationId);animationI
 function resetCamera(){stopSpin();model.autoRotate=false;model.setAttribute('camera-orbit',`${START_AZIMUTH}deg ${START_POLAR}deg auto`);if(typeof model.jumpCameraToGoal==='function')model.jumpCameraToGoal();}
 function spinOnce(){
   stopSpin();
-  // 360度を2秒で明示的に回転。autoRotateの既定速度に依存しない。
-  const orbit=model.getCameraOrbit?.(), a0=orbit?orbit.theta*180/Math.PI:START_AZIMUTH;
+  // 最初の後ろ姿(180度)から540度回転して正面(0度)に止める。
+  // 正面からの再回転は360度にして、毎回正面で終わる。
+  const orbit=model.getCameraOrbit?.();
+  const a0=orbit?orbit.theta*180/Math.PI:START_AZIMUTH;
   const p0=orbit?orbit.phi*180/Math.PI:START_POLAR;
-  const start=performance.now(), duration=2100;
+  const mod=((a0%360)+360)%360;
+  const toFront=(360-mod)%360;
+  const degrees=360+toFront;
+  const start=performance.now(), duration=2600;
   const frame=now=>{
     const t=Math.min(1,(now-start)/duration);
-    const smooth=1-Math.pow(1-t,3);
-    model.cameraOrbit=`${a0+360*smooth}deg ${p0}deg auto`;
+    const smooth=t<.5?2*t*t:1-Math.pow(-2*t+2,2)/2;
+    model.cameraOrbit=`${a0+degrees*smooth}deg ${p0}deg auto`;
     if(t<1)animationId=requestAnimationFrame(frame);
-    else {animationId=0;model.cameraOrbit=`${a0}deg ${p0}deg auto`;}
+    else {animationId=0;model.cameraOrbit=`${a0+degrees}deg ${p0}deg auto`;}
   };
   animationId=requestAnimationFrame(frame);
 }
