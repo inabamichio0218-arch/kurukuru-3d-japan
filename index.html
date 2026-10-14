@@ -6,8 +6,11 @@
 <meta name="apple-mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
 <title>マイクラ風 くるくるクイズ（だるま・おためし）</title>
 <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DotGothic16&family=Mochiy+Pop+One&family=Zen+Maru+Gothic:wght@900&display=swap" rel="stylesheet">
 <style>
-*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;background:#21190f;font-family:system-ui,'Yu Gothic',sans-serif;overflow:hidden}body{display:flex;align-items:center;justify-content:center}.stage{position:relative;width:min(100vw,calc(100dvh * 0.5625));height:auto;aspect-ratio:9/16;background:url('./background.png') center/100% 100% no-repeat;overflow:hidden;user-select:none;-webkit-user-select:none}.hotspot{position:absolute;display:flex;align-items:center;justify-content:center;border:0;background:transparent;margin:0;padding:0;cursor:pointer;touch-action:manipulation;-webkit-tap-highlight-color:transparent}.hotspot{z-index:5}.viewer{z-index:1}.hotspot:focus-visible{outline:3px solid #ffda58;outline-offset:-4px}.info{left:82%;top:0.9%;width:17%;height:9.2%;border-radius:50%}.viewer{position:absolute;left:7.4%;top:20.4%;width:85%;height:48.8%;overflow:hidden;touch-action:none}model-viewer{width:100%;height:100%;background:transparent;--poster-color:transparent;touch-action:none}.prompt{position:absolute;z-index:2;left:3%;right:3%;top:2%;text-align:center;color:#262626;font-size:clamp(12px,3.9vw,22px);font-weight:900;text-shadow:0 1px 2px #fff;background:#ffffffb9;border-radius:9px;padding:3px 4px;pointer-events:none}.feedback{position:absolute;inset:0;display:flex;justify-content:center;align-items:center;font-weight:1000;font-size:clamp(29px,8vw,55px);text-shadow:2px 3px #fff,-2px -1px #fff,0 0 8px #fff;pointer-events:none;opacity:0;transition:opacity .2s}.feedback.show{opacity:1}.feedback.good{color:#148e2b}.feedback.bad{color:#db213e}.choice{top:73.0%;width:37%;height:8.1%;font-size:clamp(17px,5.2vw,32px);font-weight:1000;color:#191919;text-shadow:0 1px #fff}.choice.left{left:7.0%}.choice.right{left:55%}.choice:disabled{opacity:1;cursor:default}.choice.selected.correct{color:#127a26}.choice.selected.incorrect{color:#e22d3a}.action{top:85.0%;width:39%;height:8.9%;font-size:clamp(16px,4.2vw,27px);font-weight:1000;color:#0b1510;line-height:1.08}.action.left{left:5.3%}.action.right{left:54.3%}.action[hidden],.choice[hidden]{display:none}.overlay{position:absolute;inset:0;background:#0b170beF;z-index:7;color:white;display:none;align-items:center;justify-content:center;padding:7%;overflow:auto}.overlay.open{display:flex}.infoPanel{width:100%;max-height:90%;overflow-y:auto;background:#fff;color:#19241b;padding:20px;border-radius:18px;line-height:1.7;font-size:clamp(13px,3.6vw,19px)}.infoPanel h2{font-size:1.3em;margin:0 0 10px}.infoPanel button{display:block;margin:16px auto 0;border:0;border-radius:12px;background:#2e7832;color:white;font:inherit;font-weight:800;padding:10px 24px}.infoPanel p{margin:8px 0}.infoPanel small{font-size:.78em}.infoPanel a{color:#1757ac}body:has(.overlay.open) model-viewer{pointer-events:none}
+*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;background:#21190f;font-family:'Mochiy Pop One',system-ui,'Yu Gothic',sans-serif;overflow:hidden}body{display:flex;align-items:center;justify-content:center}.stage{position:relative;width:min(100vw,calc(100dvh * 0.5625));height:auto;aspect-ratio:9/16;background:url('./background.png') center/100% 100% no-repeat;overflow:hidden;user-select:none;-webkit-user-select:none}.hotspot{position:absolute;display:flex;align-items:center;justify-content:center;border:0;background:transparent;margin:0;padding:0;cursor:pointer;touch-action:manipulation;-webkit-tap-highlight-color:transparent}.hotspot{z-index:5}.viewer{z-index:1}.hotspot:focus-visible{outline:3px solid #ffda58;outline-offset:-4px}.info{left:82%;top:0.9%;width:17%;height:9.2%;border-radius:50%}.viewer{position:absolute;left:7.4%;top:20.4%;width:85%;height:48.8%;overflow:hidden;touch-action:none}model-viewer{width:100%;height:100%;background:transparent;--poster-color:transparent;touch-action:none}.prompt{font-family:var(--game-font,'Mochiy Pop One',sans-serif);position:absolute;z-index:2;left:3%;right:3%;top:2%;text-align:center;color:#262626;font-size:clamp(12px,3.9vw,22px);font-weight:900;text-shadow:0 1px 2px #fff;background:#ffffffb9;border-radius:9px;padding:3px 4px;pointer-events:none}.feedback{font-family:var(--game-font,'Mochiy Pop One',sans-serif);position:absolute;inset:0;display:flex;justify-content:center;align-items:center;font-weight:1000;font-size:clamp(29px,8vw,55px);text-shadow:2px 3px #fff,-2px -1px #fff,0 0 8px #fff;pointer-events:none;opacity:0;transition:opacity .2s}.feedback.show{opacity:1}.feedback.good{color:#148e2b}.feedback.bad{color:#db213e}.choice{font-family:var(--game-font,'Mochiy Pop One',sans-serif);top:73.0%;width:37%;height:8.1%;font-size:clamp(17px,5.2vw,32px);font-weight:1000;color:#191919;text-shadow:0 1px #fff}.choice.left{left:7.0%}.choice.right{left:55%}.choice:disabled{opacity:1;cursor:default}.choice.selected.correct{color:#127a26}.choice.selected.incorrect{color:#e22d3a}.action{font-family:var(--game-font,'Mochiy Pop One',sans-serif);top:85.0%;width:39%;height:8.9%;font-size:clamp(16px,4.2vw,27px);font-weight:1000;color:#0b1510;line-height:1.08}.action.left{left:5.3%}.action.right{left:54.3%}.action[hidden],.choice[hidden]{display:none}.overlay{position:absolute;inset:0;background:#0b170beF;z-index:7;color:white;display:none;align-items:center;justify-content:center;padding:7%;overflow:auto}.overlay.open{display:flex}.infoPanel{width:100%;max-height:90%;overflow-y:auto;background:#fff;color:#19241b;padding:20px;border-radius:18px;line-height:1.7;font-size:clamp(13px,3.6vw,19px)}.infoPanel h2{font-size:1.3em;margin:0 0 10px}.infoPanel button{display:block;margin:16px auto 0;border:0;border-radius:12px;background:#2e7832;color:white;font:inherit;font-weight:800;padding:10px 24px}.infoPanel p{margin:8px 0}.infoPanel small{font-size:.78em} .infoPanel a{color:#1757ac}.fontChooser{display:grid;grid-template-columns:1fr;gap:7px;margin-top:6px}.fontChooser button{margin:0;padding:8px 10px;text-align:left;background:#e4eae4;color:#182818;border:2px solid transparent;border-radius:9px;font-size:14px}.fontChooser button[aria-pressed="true"]{background:#d5f8cb;border-color:#328b37}.fontChooser button[data-font="mochiy"]{font-family:'Mochiy Pop One',sans-serif}.fontChooser button[data-font="dot"]{font-family:'DotGothic16',sans-serif}.fontChooser button[data-font="maru"]{font-family:'Zen Maru Gothic',sans-serif}body:has(.overlay.open) model-viewer{pointer-events:none}
 </style>
 </head><body>
 <main class="stage" aria-label="マイクラ風 くるくるクイズ">
@@ -24,26 +27,82 @@
 <p><b>マイクラ風 くるくるクイズ</b><br>だるま1問の動作確認版です。</p>
 <p><b>あそびかた</b><br>① 3Dを指で回して正体を考える。<br>②「こたえる」を押して2択に答える。<br>③ 間違えたら「もういちど」で再挑戦。</p>
 <p>1本指：回転　／　2本指：拡大・縮小</p>
+<p><b>フォントをくらべる</b><br>えらぶと、クイズの文字がかわります。</p>
+<div class="fontChooser" role="group" aria-label="文字のデザイン">
+<button data-font="mochiy" aria-pressed="true">もちもち・ゲーム風</button>
+<button data-font="dot" aria-pressed="false">ドット文字</button>
+<button data-font="maru" aria-pressed="false">まるゴシック</button>
+</div>
 <p><b>制作・素材</b><br>教材の制作者・3D素材提供者の正式表記は公開前に記入してください。</p>
-<p><b>利用・著作権</b><br>試作用です。素材の利用条件と公開許諾を確認してから配布してください。Minecraft公式とは関係のない非公式教材です。</p>
+<p><b>利用・著作権</b><br>3D素材制作者からGitHub PagesでのWebアプリ利用許可を確認済みです。正式公開時は制作者名・利用条件を記載してください。Minecraft公式とは関係のない非公式教材です。</p>
 <small>モデル表示：&lt;model-viewer&gt;（外部ライブラリ）。通信環境が必要です。</small>
 <button id="closeInfo">クイズにもどる</button></div></div>
 </main>
 <script>
 const $=id=>document.getElementById(id), model=$('model'), prompt=$('prompt'), feedback=$('feedback'), left=$('leftAction'), right=$('rightAction'), choices=[$('choice0'),$('choice1')];
-let phase='observe', answerIndex=0, feedbackTimer;
-function resetCamera(){model.setAttribute('camera-orbit','180deg 75deg auto');if(typeof model.jumpCameraToGoal==='function')model.jumpCameraToGoal();}
-function setAction(el,label,handler,show=true){el.textContent=label;el.hidden=!show;el.onclick=handler;el.setAttribute('aria-label',label);}
-function render(){choices.forEach(el=>{el.hidden=phase!=='choose'&&phase!=='correct'&&phase!=='wrong';el.disabled=phase!=='choose';el.className=el.className.replace(/\sselected|\scorrect|\sincorrect/g,'')});
-if(phase==='observe'){prompt.textContent='うしろ姿を 回してみよう！';setAction(left,'こたえる',()=>{phase='choose';render()});setAction(right,'むきをもどす',resetCamera);}
-else if(phase==='choose'){prompt.textContent='どちらでしょう？';setAction(left,'かんさつ',()=>{phase='observe';render()});setAction(right,'むきをもどす',resetCamera);choices.forEach((el,i)=>{el.textContent=i===answerIndex?'だるま':'こけし';el.onclick=()=>judge(i)});}
-else if(phase==='correct'){prompt.textContent='だるま！';setAction(left,'もういちど',restart);setAction(right,'おわる',()=>{$('overlay').classList.add('open')});}
-else if(phase==='wrong'){prompt.textContent='もう一度 よく見よう！';setAction(left,'もういちど',()=>{phase='observe';render()});setAction(right,'むきをもどす',resetCamera);}
+let phase='observe', answerIndex=0, animationId=0, feedbackTimer=0;
+const START_AZIMUTH=180, START_POLAR=75;
+function stopSpin(){if(animationId){cancelAnimationFrame(animationId);animationId=0;}}
+function resetCamera(){stopSpin();model.autoRotate=false;model.setAttribute('camera-orbit',`${START_AZIMUTH}deg ${START_POLAR}deg auto`);if(typeof model.jumpCameraToGoal==='function')model.jumpCameraToGoal();}
+function spinOnce(){
+  stopSpin();
+  // 360度を2秒で明示的に回転。autoRotateの既定速度に依存しない。
+  const orbit=model.getCameraOrbit?.(), a0=orbit?orbit.theta*180/Math.PI:START_AZIMUTH;
+  const p0=orbit?orbit.phi*180/Math.PI:START_POLAR;
+  const start=performance.now(), duration=2100;
+  const frame=now=>{
+    const t=Math.min(1,(now-start)/duration);
+    const smooth=1-Math.pow(1-t,3);
+    model.cameraOrbit=`${a0+360*smooth}deg ${p0}deg auto`;
+    if(t<1)animationId=requestAnimationFrame(frame);
+    else {animationId=0;model.cameraOrbit=`${a0}deg ${p0}deg auto`;}
+  };
+  animationId=requestAnimationFrame(frame);
 }
-function judge(i){const good=i===answerIndex;phase=good?'correct':'wrong';render();choices[i].classList.add('selected',good?'correct':'incorrect');choices.forEach(el=>el.disabled=true);feedback.textContent=good?'せいかい！':'ざんねん！';feedback.className='feedback show '+(good?'good':'bad');clearTimeout(feedbackTimer);feedbackTimer=setTimeout(()=>feedback.className='feedback',1600);if(good){model.autoRotate=true;setTimeout(()=>model.autoRotate=false,2200)}}
-function restart(){clearTimeout(feedbackTimer);feedback.className='feedback';model.autoRotate=false;resetCamera();answerIndex=Math.random()<.5?0:1;phase='observe';render()}
-$('info').onclick=()=>{$('overlay').classList.add('open');$('closeInfo').focus()};$('closeInfo').onclick=()=>{$('overlay').classList.remove('open');$('info').focus()};
+function setAction(el,label,handler,show=true){el.textContent=label;el.hidden=!show;el.onclick=show?handler:null;el.setAttribute('aria-label',label);}
+function clearFeedback(){clearTimeout(feedbackTimer);feedback.className='feedback';feedback.textContent='';}
+function render(){
+ choices.forEach(el=>{el.hidden=phase!=='choose'&&phase!=='correct'&&phase!=='wrong';el.disabled=phase!=='choose';el.className=el.className.replace(/\sselected|\scorrect|\sincorrect/g,'')});
+ if(phase==='observe'){
+   prompt.textContent='くるっと 回してみよう！';
+   setAction(left,'こたえる',()=>{phase='choose';render()});
+   setAction(right,'むきをもどす',resetCamera);
+ }else if(phase==='choose'){
+   prompt.textContent='どちらかな？';
+   setAction(left,'かんさつ',()=>{phase='observe';render()});
+   setAction(right,'むきをもどす',resetCamera);
+   choices.forEach((el,i)=>{el.textContent=i===answerIndex?'だるま':'こけし';el.onclick=()=>judge(i)});
+ }else if(phase==='correct'){
+   prompt.textContent='だるま！';
+   setAction(left,'もういちど',restart);
+   setAction(right,'もういっかい回す',spinOnce);
+ }else if(phase==='wrong'){
+   prompt.textContent='よく見てみよう！';
+   setAction(left,'もういちど',()=>{clearFeedback();phase='observe';render()});
+   setAction(right,'むきをもどす',resetCamera);
+ }
+}
+function judge(i){
+ if(phase!=='choose')return;
+ const good=i===answerIndex;
+ phase=good?'correct':'wrong';render();
+ choices[i].classList.add('selected',good?'correct':'incorrect');choices.forEach(el=>el.disabled=true);
+ feedback.textContent=good?'○ せいかい！':'× ざんねん！';
+ feedback.className='feedback show '+(good?'good':'bad');
+ clearTimeout(feedbackTimer);
+ feedbackTimer=setTimeout(()=>feedback.className='feedback',3000);
+ if(good)spinOnce();
+}
+function restart(){clearFeedback();resetCamera();answerIndex=Math.random()<.5?0:1;phase='observe';render();}
+$('info').onclick=()=>{$('overlay').classList.add('open');$('closeInfo').focus()};
+$('closeInfo').onclick=()=>{$('overlay').classList.remove('open');$('info').focus()};
+// フォントを3種類切り替えてiPhoneで見比べる
+const fonts={mochiy:"'Mochiy Pop One',sans-serif",dot:"'DotGothic16',sans-serif",maru:"'Zen Maru Gothic',sans-serif"};
+document.querySelectorAll('[data-font]').forEach(btn=>btn.onclick=()=>{
+ document.querySelector('.stage').style.setProperty('--game-font',fonts[btn.dataset.font]);
+ document.querySelectorAll('[data-font]').forEach(b=>b.setAttribute('aria-pressed',String(b===btn)));
+});
 model.addEventListener('error',()=>{prompt.textContent='3Dを読み込めませんでした。通信とファイル名を確認してください。'});
-render(); // ボタンは3Dライブラリの読み込みを待たず先に有効化する
-customElements.whenDefined('model-viewer').then(()=>{ resetCamera(); }).catch(()=>{});
+render();
+customElements.whenDefined('model-viewer').then(()=>model.addEventListener('load',()=>resetCamera(),{once:true})).catch(()=>{});
 </script></body></html>
