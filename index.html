@@ -4,7 +4,7 @@
 <meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=5"/>
 <meta name="theme-color" content="#397c21"/>
 <meta name="apple-mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
-<title>マイクラ風 くるくるクイズ Japan編 Ver.10</title>
+<title>マイクラ風 くるくるクイズ Japan編 Ver.11</title>
 <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,6 +17,20 @@
 .adjustMode .adjustPanel{display:block}.adjustMode .action,.adjustMode .choice{display:none!important}
 .adjustPanel label{font-weight:700}.adjustPanel select{max-width:100%;height:34px;font-size:15px}.adjustPanel button{background:#236336;color:white;border:0;border-radius:5px;padding:9px 8px;font-size:12px;font-weight:700}.adjustPanel button:active{background:#164225}
 .adjustPanel .tools{display:flex;gap:5px;flex-wrap:wrap;margin:6px 0}.adjustPanel textarea{width:100%;height:44px;font:11px monospace}.adjustPanel small{display:block}
+
+/* PowerPoint制作画面：9:16の画像を重ね、透明の操作エリアのみHTMLで制御 */
+.courseScreen{background:url('./course-menu.png') center / 100% 100% no-repeat;padding:0;display:none;position:absolute;inset:0;z-index:8}
+.courseScreen.open{display:block}
+.courseInfo{position:absolute;left:82%;top:0%;width:17%;height:10%;border:0;border-radius:50%;background:transparent;cursor:pointer;touch-action:manipulation}.courseInfo:focus-visible{outline:3px solid #ffe36e}
+.courseTap{position:absolute;left:15%;width:69%;height:9.2%;border:0;background:transparent;cursor:pointer;touch-action:manipulation;-webkit-tap-highlight-color:transparent;border-radius:12px}
+.courseTap:focus-visible{outline:4px solid #ffe36e;outline-offset:-4px}
+.course5{top:41.8%}.course10{top:52.4%}.course26{top:63.0%}
+.overlay.aboutScreen{z-index:11;display:none;inset:0;padding:0;overflow:hidden;background:#345a50}
+.overlay.aboutScreen.open{display:block}
+.aboutArt{position:absolute;inset:0;width:100%;height:100%;object-fit:fill;user-select:none;pointer-events:none}
+.backPicture{position:absolute;top:84.5%;left:18%;width:64%;height:9.2%;padding:0;border:0;background:transparent;cursor:pointer;touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+.backPicture img{width:100%;height:100%;object-fit:contain;pointer-events:none}
+.backPicture:focus-visible{outline:3px solid #ffe36e;border-radius:40px}
 </style>
 </head><body>
 <main class="stage" aria-label="マイクラ風 くるくるクイズ">
@@ -28,23 +42,17 @@
 </section>
 <button class="hotspot choice left" id="choice0" hidden></button><button class="hotspot choice right" id="choice1" hidden></button>
 <button class="hotspot action left" id="leftAction"></button><button class="hotspot action right" id="rightAction"></button>
-<div class="resultPanel open" id="course" role="dialog" aria-modal="true" aria-label="コースをえらぶ"><div class="infoPanel"><h2>Japan編 くるくるクイズ</h2><p>なんもん あそぶ？</p><button data-course="5">5もん コース</button><button data-course="10">10もん コース</button><button data-course="26">26もん コース</button><p><small>3Dをくるくる回して、正体をあてよう！</small></p></div></div>
-<div class="resultPanel" id="result"><div class="infoPanel"><h2 class="resultTitle">コース クリア！</h2><p class="resultScore" id="score"></p><p>よく見て、くるくる回せたね！</p><button id="playAgain">もういちど あそぶ</button></div></div>
-<div class="overlay" id="overlay" role="dialog" aria-modal="true" aria-labelledby="aboutTitle"><div class="infoPanel">
-<h2 id="aboutTitle">この教材について</h2>
-<p><b>マイクラ風 くるくるクイズ</b><br>日本のアイテム26種類から、5問・10問・26問を選んで遊べます。</p>
-<p><b>あそびかた</b><br>① 3Dを指で回して正体を考える。<br>②「こたえる」を押して2択に答える。<br>③ 間違えたら同じ問題にもう一度挑戦。<br>④ 正解したら「つぎへ」で次の問題へ。コースが終わると結果が出ます。</p>
-<p>1本指：回転　／　2本指：拡大・縮小</p>
-<p><b>フォントをくらべる</b><br>えらぶと、クイズの文字がかわります。</p>
-<div class="fontChooser" role="group" aria-label="文字のデザイン">
-<button data-font="mochiy" aria-pressed="true">もちもち・ゲーム風</button>
-<button data-font="dot" aria-pressed="false">ドット文字</button>
-<button data-font="maru" aria-pressed="false">まるゴシック</button>
+<div class="resultPanel open courseScreen" id="course" role="dialog" aria-modal="true" aria-label="コースをえらぶ">
+  <button class="courseInfo" id="courseInfo" aria-label="この教材について"></button>
+  <button class="courseTap course5" data-course="5" aria-label="5もん コース かんたん"></button>
+  <button class="courseTap course10" data-course="10" aria-label="10もん コース たっぷり"></button>
+  <button class="courseTap course26" data-course="26" aria-label="26もん コース ぜんぶ"></button>
 </div>
-<p><b>制作・素材</b><br>教材の制作者・3D素材提供者の正式表記は公開前に記入してください。</p>
-<p><b>利用・著作権</b><br>3D素材制作者からGitHub PagesでのWebアプリ利用許可を確認済みです。正式公開時は制作者名・利用条件を記載してください。Minecraft公式とは関係のない非公式教材です。</p>
-<small>モデル表示：&lt;model-viewer&gt;（外部ライブラリ）。通信環境が必要です。</small>
-<button id="closeInfo">クイズにもどる</button></div></div>
+<div class="resultPanel" id="result"><div class="infoPanel"><h2 class="resultTitle">コース クリア！</h2><p class="resultScore" id="score"></p><p>よく見て、くるくる回せたね！</p><button id="playAgain">もういちど あそぶ</button></div></div>
+<div class="overlay aboutScreen" id="overlay" role="dialog" aria-modal="true" aria-label="この教材について">
+  <img src="./about.png" class="aboutArt" alt="この教材と3Dアイテムの制作者紹介、利用条件と著作権の案内" />
+  <button id="closeInfo" class="backPicture" aria-label="問題にもどる"><img src="./back-button.png" alt="" /></button>
+</div>
 <section id="adjustPanel" class="adjustPanel" aria-label="3D角度調整"><label>角度調整（制作中のみ） <select id="adjustItem"></select></label><div class="tools"><button id="saveStart">今の向きを開始角度に</button><button id="saveEnd">今の向きを正解後の角度に</button><button id="previewStart">開始角度を見る</button><button id="previewEnd">終了角度を見る</button></div><small id="adjustStatus">3Dを回し、希望の角度で保存してください。</small><div class="tools"><button id="exportAngles">設定をまとめてコピー</button></div><textarea id="angleData" readonly aria-label="保存済みの角度データ"></textarea><small>この端末には一時保存されます。別の端末やGitHubへ反映するには「設定をまとめてコピー」で得たJSONを共有してください。</small></section>
 </main>
 <script>
@@ -166,8 +174,8 @@ function newGame(){order=shuffle(questions.map((_,i)=>i)).slice(0,selectedCourse
 function chooseCourse(n){selectedCourse=n;newGame();}
 $('playAgain').onclick=()=>{$('result').classList.remove('open');$('course').classList.add('open');};
 document.querySelectorAll('[data-course]').forEach(b=>b.onclick=()=>chooseCourse(Number(b.dataset.course)));
-$('info').onclick=()=>{$('overlay').classList.add('open');$('closeInfo').focus()};
-$('closeInfo').onclick=()=>{$('overlay').classList.remove('open');$('info').focus()};
+let infoReturnFocus=null; const openAbout=()=>{infoReturnFocus=document.activeElement;$('overlay').classList.add('open');$('closeInfo').focus()}; $('info').onclick=openAbout; $('courseInfo').onclick=openAbout;
+$('closeInfo').onclick=()=>{$('overlay').classList.remove('open');(infoReturnFocus&&typeof infoReturnFocus.focus==='function'?infoReturnFocus:$('info')).focus()};
 const fonts={mochiy:"'Mochiy Pop One',sans-serif",dot:"'DotGothic16',sans-serif",maru:"'Zen Maru Gothic',sans-serif"};
 document.querySelectorAll('[data-font]').forEach(btn=>btn.onclick=()=>{
  document.querySelector('.stage').style.setProperty('--game-font',fonts[btn.dataset.font]);
