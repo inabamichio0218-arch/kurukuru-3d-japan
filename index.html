@@ -4,13 +4,19 @@
 <meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=5"/>
 <meta name="theme-color" content="#397c21"/>
 <meta name="apple-mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
-<title>マイクラ風 くるくるクイズ Japan編 Ver.8</title>
+<title>マイクラ風 くるくるクイズ Japan編 Ver.9</title>
 <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DotGothic16&family=Mochiy+Pop+One&family=Zen+Maru+Gothic:wght@900&display=swap" rel="stylesheet">
 <style>
-*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;background:#21190f;font-family:'Mochiy Pop One',system-ui,'Yu Gothic',sans-serif;overflow:hidden}body{display:flex;align-items:center;justify-content:center}.stage{position:relative;width:min(100vw,calc(100dvh * 0.5625));height:auto;aspect-ratio:9/16;background:url('./background.png') center/100% 100% no-repeat;overflow:hidden;user-select:none;-webkit-user-select:none}.hotspot{position:absolute;display:flex;align-items:center;justify-content:center;border:0;background:transparent;margin:0;padding:0;cursor:pointer;touch-action:manipulation;-webkit-tap-highlight-color:transparent}.hotspot{z-index:5}.viewer{z-index:1}.hotspot:focus-visible{outline:3px solid #ffda58;outline-offset:-4px}.info{left:82%;top:0.9%;width:17%;height:9.2%;border-radius:50%}.viewer{position:absolute;left:7.4%;top:20.4%;width:85%;height:48.8%;overflow:hidden;touch-action:none}model-viewer{width:100%;height:100%;background:transparent;--poster-color:transparent;touch-action:none}.prompt{font-family:var(--game-font,'Mochiy Pop One',sans-serif);position:absolute;z-index:2;left:3%;right:3%;top:2%;text-align:center;color:#262626;font-size:clamp(12px,3.9vw,22px);font-weight:900;text-shadow:0 1px 2px #fff;background:#ffffffb9;border-radius:9px;padding:3px 4px;pointer-events:none}.feedback{font-family:var(--game-font,'Mochiy Pop One',sans-serif);position:absolute;inset:0;display:flex;justify-content:center;align-items:center;font-weight:1000;font-size:clamp(29px,8vw,55px);text-shadow:2px 3px #fff,-2px -1px #fff,0 0 8px #fff;pointer-events:none;opacity:0;transition:opacity .2s}.feedback.show{opacity:1}.feedback.good{color:#148e2b}.feedback.bad{color:#db213e}.choice{font-family:var(--game-font,'Mochiy Pop One',sans-serif);top:73.0%;width:37%;height:8.1%;font-size:clamp(17px,5.2vw,32px);font-weight:1000;color:#191919;text-shadow:0 1px #fff}.choice{padding:0 3.5%;white-space:nowrap;overflow:hidden;text-overflow:clip;line-height:1.15}.choice.left{left:7.0%}.choice.right{left:55%}.choice:disabled{opacity:1;cursor:default}.choice.selected.correct{color:#127a26}.choice.selected.incorrect{color:#e22d3a}.action{font-family:var(--game-font,'Mochiy Pop One',sans-serif);top:85.0%;width:39%;height:8.9%;font-size:clamp(16px,4.2vw,27px);font-weight:1000;color:#0b1510;line-height:1.08}.action.left{left:5.3%}.action.right{left:54.3%}.action[hidden],.choice[hidden]{display:none}.overlay{position:absolute;inset:0;background:#0b170beF;z-index:7;color:white;display:none;align-items:center;justify-content:center;padding:7%;overflow:auto}.overlay.open{display:flex}.infoPanel{width:100%;max-height:90%;overflow-y:auto;background:#fff;color:#19241b;padding:20px;border-radius:18px;line-height:1.7;font-size:clamp(13px,3.6vw,19px)}.infoPanel h2{font-size:1.3em;margin:0 0 10px}.infoPanel button{display:block;margin:16px auto 0;border:0;border-radius:12px;background:#2e7832;color:white;font:inherit;font-weight:800;padding:10px 24px}.infoPanel p{margin:8px 0}.infoPanel small{font-size:.78em} .infoPanel a{color:#1757ac}.fontChooser{display:grid;grid-template-columns:1fr;gap:7px;margin-top:6px}.fontChooser button{margin:0;padding:8px 10px;text-align:left;background:#e4eae4;color:#182818;border:2px solid transparent;border-radius:9px;font-size:14px}.fontChooser button[aria-pressed="true"]{background:#d5f8cb;border-color:#328b37}.fontChooser button[data-font="mochiy"]{font-family:'Mochiy Pop One',sans-serif}.fontChooser button[data-font="dot"]{font-family:'DotGothic16',sans-serif}.fontChooser button[data-font="maru"]{font-family:'Zen Maru Gothic',sans-serif}body:has(.overlay.open) model-viewer{pointer-events:none}.resultTitle{font-size:1.25em;text-align:center}.resultScore{font-size:2em;text-align:center;color:#287a32;margin:12px 0}.resultPanel{position:absolute;z-index:8;inset:0;background:#102610ef;display:none;align-items:center;justify-content:center;padding:7%}.resultPanel.open{display:flex}.resultPanel .infoPanel{max-height:85%;text-align:center}.resultPanel button{min-height:50px;width:95%}
+*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;background:#21190f;font-family:'Mochiy Pop One',system-ui,'Yu Gothic',sans-serif;overflow:hidden}body{display:flex;align-items:center;justify-content:center}.stage{position:relative;width:min(100vw,calc(100dvh * 0.5625));height:auto;aspect-ratio:9/16;background:url('./background.png') center/100% 100% no-repeat;overflow:hidden;user-select:none;-webkit-user-select:none}.hotspot{position:absolute;display:flex;align-items:center;justify-content:center;border:0;background:transparent;margin:0;padding:0;cursor:pointer;touch-action:manipulation;-webkit-tap-highlight-color:transparent}.hotspot{z-index:5}.viewer{z-index:1}.hotspot:focus-visible{outline:3px solid #ffda58;outline-offset:-4px}.info{left:82%;top:0.9%;width:17%;height:9.2%;border-radius:50%}.viewer{position:absolute;left:7.4%;top:20.4%;width:85%;height:48.8%;overflow:hidden;touch-action:none}model-viewer{width:100%;height:100%;background:transparent;--poster-color:transparent;touch-action:none}.prompt{font-family:var(--game-font,'Mochiy Pop One',sans-serif);position:absolute;z-index:2;left:3%;right:3%;top:2%;text-align:center;color:#262626;font-size:clamp(12px,3.9vw,22px);font-weight:900;text-shadow:0 1px 2px #fff;background:#ffffffb9;border-radius:9px;padding:3px 4px;pointer-events:none}.feedback{font-family:var(--game-font,'Mochiy Pop One',sans-serif);position:absolute;inset:0;display:flex;justify-content:center;align-items:center;font-weight:1000;font-size:clamp(29px,8vw,55px);text-shadow:2px 3px #fff,-2px -1px #fff,0 0 8px #fff;pointer-events:none;opacity:0;transition:opacity .2s}.feedback.show{opacity:1}.feedback.good{color:#148e2b}.feedback.bad{color:#db213e}.choice{font-family:var(--game-font,'Mochiy Pop One',sans-serif);top:73.0%;width:37%;height:8.1%;font-size:clamp(17px,5.2vw,32px);font-weight:1000;color:#191919;text-shadow:0 1px #fff}.choice{padding:0 3.5%;white-space:nowrap;overflow:hidden;text-overflow:clip;line-height:1.15}.choice.left{left:7.0%}.choice.right{left:55%}.choice:disabled{opacity:1;cursor:default}.choice.selected.correct{color:#127a26}.choice.selected.incorrect{color:#e22d3a}.action{font-family:var(--game-font,'Mochiy Pop One',sans-serif);top:85.0%;width:39%;height:8.9%;font-size:clamp(16px,4.2vw,27px);font-weight:1000;color:#0b1510;line-height:1.08}.action{padding:0 2%;white-space:nowrap;overflow:hidden}.action.left{left:5.3%}.action.right{left:54.3%}.action[hidden],.choice[hidden]{display:none}.overlay{position:absolute;inset:0;background:#0b170beF;z-index:7;color:white;display:none;align-items:center;justify-content:center;padding:7%;overflow:auto}.overlay.open{display:flex}.infoPanel{width:100%;max-height:90%;overflow-y:auto;background:#fff;color:#19241b;padding:20px;border-radius:18px;line-height:1.7;font-size:clamp(13px,3.6vw,19px)}.infoPanel h2{font-size:1.3em;margin:0 0 10px}.infoPanel button{display:block;margin:16px auto 0;border:0;border-radius:12px;background:#2e7832;color:white;font:inherit;font-weight:800;padding:10px 24px}.infoPanel p{margin:8px 0}.infoPanel small{font-size:.78em} .infoPanel a{color:#1757ac}.fontChooser{display:grid;grid-template-columns:1fr;gap:7px;margin-top:6px}.fontChooser button{margin:0;padding:8px 10px;text-align:left;background:#e4eae4;color:#182818;border:2px solid transparent;border-radius:9px;font-size:14px}.fontChooser button[aria-pressed="true"]{background:#d5f8cb;border-color:#328b37}.fontChooser button[data-font="mochiy"]{font-family:'Mochiy Pop One',sans-serif}.fontChooser button[data-font="dot"]{font-family:'DotGothic16',sans-serif}.fontChooser button[data-font="maru"]{font-family:'Zen Maru Gothic',sans-serif}body:has(.overlay.open) model-viewer{pointer-events:none}.resultTitle{font-size:1.25em;text-align:center}.resultScore{font-size:2em;text-align:center;color:#287a32;margin:12px 0}.resultPanel{position:absolute;z-index:8;inset:0;background:#102610ef;display:none;align-items:center;justify-content:center;padding:7%}.resultPanel.open{display:flex}.resultPanel .infoPanel{max-height:85%;text-align:center}.resultPanel button{min-height:50px;width:95%}
+
+/* 角度調整は ?adjust=1 でのみ表示 */
+.adjustPanel{display:none;position:absolute;z-index:12;bottom:0;left:0;width:100%;background:#fffffff2;color:#1d2a1f;padding:9px 12px 12px;font:13px/1.4 system-ui,sans-serif;box-shadow:0 -2px 12px #0004;max-height:32%;overflow:auto}
+.adjustMode .adjustPanel{display:block}.adjustMode .action,.adjustMode .choice{display:none!important}
+.adjustPanel label{font-weight:700}.adjustPanel select{max-width:100%;height:34px;font-size:15px}.adjustPanel button{background:#236336;color:white;border:0;border-radius:5px;padding:9px 8px;font-size:12px;font-weight:700}.adjustPanel button:active{background:#164225}
+.adjustPanel .tools{display:flex;gap:5px;flex-wrap:wrap;margin:6px 0}.adjustPanel textarea{width:100%;height:44px;font:11px monospace}.adjustPanel small{display:block}
 </style>
 </head><body>
 <main class="stage" aria-label="マイクラ風 くるくるクイズ">
@@ -39,6 +45,7 @@
 <p><b>利用・著作権</b><br>3D素材制作者からGitHub PagesでのWebアプリ利用許可を確認済みです。正式公開時は制作者名・利用条件を記載してください。Minecraft公式とは関係のない非公式教材です。</p>
 <small>モデル表示：&lt;model-viewer&gt;（外部ライブラリ）。通信環境が必要です。</small>
 <button id="closeInfo">クイズにもどる</button></div></div>
+<section id="adjustPanel" class="adjustPanel" aria-label="3D角度調整"><label>角度調整（制作中のみ） <select id="adjustItem"></select></label><div class="tools"><button id="saveStart">今の向きを開始角度に</button><button id="saveEnd">今の向きを正解後の角度に</button><button id="previewStart">開始角度を見る</button><button id="previewEnd">終了角度を見る</button></div><small id="adjustStatus">3Dを回し、希望の角度で保存してください。</small><div class="tools"><button id="exportAngles">設定をまとめてコピー</button></div><textarea id="angleData" readonly aria-label="保存済みの角度データ"></textarea><small>この端末には一時保存されます。別の端末やGitHubへ反映するには「設定をまとめてコピー」で得たJSONを共有してください。</small></section>
 </main>
 <script>
 const $=id=>document.getElementById(id), model=$('model'), prompt=$('prompt'), feedback=$('feedback'), left=$('leftAction'), right=$('rightAction'), choices=[$('choice0'),$('choice1')];
@@ -70,6 +77,10 @@ const questions=[
  {name:"にほんのはた",wrong:"ゆうびん",src:'voxel-flagjp.glb',azimuth:90,polar:75},
  {name:"とりい",wrong:"もん",src:'voxel-torii.glb',azimuth:0,polar:75}
 ];
+const adjusting=new URLSearchParams(location.search).get('adjust')==='1';
+const storageKey='kurukuru-japan-angle-config-v1';
+let storedAngles={};try{storedAngles=JSON.parse(localStorage.getItem(storageKey)||'{}')}catch(e){}
+for(const q of questions){if(storedAngles[q.src])Object.assign(q,storedAngles[q.src]);}
 let selectedCourse=5;
 let order=[],questionIndex=0,phase='observe',answerIndex=0,animationId=0,feedbackTimer=0,loadToken=0;
 const current=()=>questions[order[questionIndex]];
@@ -105,11 +116,21 @@ function render(){
  }else if(phase==='correct'){
   prompt.textContent=`${questionIndex+1} / ${order.length}　${q.name}！`;
   setAction(left,questionIndex===order.length-1?'けっかをみる':'つぎへ',nextQuestion);
-  setAction(right,'もういっかい回す',()=>spinOnce(true));
+  setAction(right,'もういっかい回す',()=>spinOnce(true));requestAnimationFrame(fitActions);
  }else if(phase==='wrong'){
   prompt.textContent='よく見てみよう！';
   setAction(left,'もういちど',()=>{clearFeedback();phase='observe';render()});setAction(right,'むきをもどす',resetCamera);
  }
+ requestAnimationFrame(fitActions);
+}
+function fitActions(){
+ const stageWidth=document.querySelector('.stage').getBoundingClientRect().width;
+ const base=Math.min(27,Math.max(14,stageWidth*0.048));
+ [left,right].forEach(el=>{
+  if(el.hidden)return;
+  let size=base;el.style.fontSize=size+'px';
+  while(size>10 && el.scrollWidth>el.clientWidth+1){size-=0.5;el.style.fontSize=size+'px';}
+ });
 }
 function fitChoices(){
  // 長い日本語も2択の枠からはみ出さないように、各ボタンを個別に調整。
@@ -123,8 +144,8 @@ function fitChoices(){
   while(size>10 && el.scrollWidth>el.clientWidth+1){size-=0.5;el.style.fontSize=size+'px';}
  });
 }
-window.addEventListener('resize',()=>requestAnimationFrame(fitChoices));
-document.fonts?.ready.then(()=>requestAnimationFrame(fitChoices));
+window.addEventListener('resize',()=>requestAnimationFrame(()=>{fitChoices();fitActions()}));
+document.fonts?.ready.then(()=>requestAnimationFrame(()=>{fitChoices();fitActions()}));
 function judge(i){
  if(phase!=='choose')return;
  const good=i===answerIndex;phase=good?'correct':'wrong';render();
@@ -153,4 +174,21 @@ document.querySelectorAll('[data-font]').forEach(btn=>btn.onclick=()=>{
 });
 model.addEventListener('error',()=>{prompt.textContent='3Dを読み込めませんでした。ファイル名を確認してください。'});
 $('course').classList.add('open');
+if(adjusting){
+ document.querySelector('.stage').classList.add('adjustMode');
+ $('course').classList.remove('open');
+ const sel=$('adjustItem'),status=$('adjustStatus');
+ questions.forEach((q,i)=>{const opt=document.createElement('option');opt.value=i;opt.textContent=(i+1)+'. '+q.name;sel.appendChild(opt)});
+ const showSelected=()=>{const i=Number(sel.value),q=questions[i];order=[i];questionIndex=0;phase='observe';stopSpin();model.src='./'+q.src;prompt.textContent=q.name+'：回して角度を決めよう';model.addEventListener('load',()=>resetCamera(),{once:true});resetCamera();status.textContent=q.name+' の角度を調整中';};
+ sel.addEventListener('change',showSelected);
+ const getAngles=()=>{const o=model.getCameraOrbit();return {azimuth:Math.round(o.theta*180/Math.PI*10)/10,polar:Math.round(o.phi*180/Math.PI*10)/10}};
+ const saveAngle=where=>{const q=questions[Number(sel.value)],o=getAngles();if(where==='start'){q.azimuth=o.azimuth;q.polar=o.polar;}else{q.finishAzimuth=o.azimuth;q.finishPolar=o.polar;}
+ storedAngles[q.src]={azimuth:q.azimuth,polar:q.polar,finishAzimuth:q.finishAzimuth??0,finishPolar:q.finishPolar??75};try{localStorage.setItem(storageKey,JSON.stringify(storedAngles))}catch(e){}
+ status.textContent=q.name+'：'+(where==='start'?'開始':'正解後')+'角度を保存しました（'+o.azimuth+'°, '+o.polar+'°）';$('angleData').value=JSON.stringify(storedAngles,null,2);};
+ $('saveStart').onclick=()=>saveAngle('start');$('saveEnd').onclick=()=>saveAngle('end');
+ $('previewStart').onclick=()=>resetCamera();
+ $('previewEnd').onclick=()=>{const q=questions[Number(sel.value)];model.cameraOrbit=`${q.finishAzimuth??0}deg ${q.finishPolar??75}deg auto`;model.jumpCameraToGoal?.();};
+ $('exportAngles').onclick=async()=>{const data=JSON.stringify(storedAngles,null,2);$('angleData').value=data;try{await navigator.clipboard.writeText(data);status.textContent='角度の設定をコピーしました。チャットに貼り付けてください。'}catch(e){$('angleData').focus();$('angleData').select();status.textContent='下のデータをコピーしてチャットへ貼り付けてください。'}};
+ showSelected();
+}
 </script></body></html>
