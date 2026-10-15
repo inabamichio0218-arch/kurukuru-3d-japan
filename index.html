@@ -4,7 +4,7 @@
 <meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=5"/>
 <meta name="theme-color" content="#397c21"/>
 <meta name="apple-mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
-<title>マイクラ風 くるくるクイズ Japan編 Ver.7</title>
+<title>マイクラ風 くるくるクイズ Japan編 Ver.8</title>
 <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -76,13 +76,15 @@ const current=()=>questions[order[questionIndex]];
 function shuffle(list){const arr=[...list];for(let i=arr.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[arr[i],arr[j]]=[arr[j],arr[i]];}return arr;}
 function stopSpin(){if(animationId){cancelAnimationFrame(animationId);animationId=0;}}
 function resetCamera(){stopSpin();model.autoRotate=false;const q=current();model.cameraOrbit=`${q.azimuth}deg ${q.polar}deg auto`;if(typeof model.jumpCameraToGoal==='function')model.jumpCameraToGoal();}
-function spinOnce(){
- stopSpin();const q=current();const orbit=model.getCameraOrbit?.();const a0=orbit?orbit.theta*180/Math.PI:q.azimuth;const p0=orbit?orbit.phi*180/Math.PI:q.polar;
+function spinOnce(fromFront=false){
+ stopSpin();const q=current();const orbit=model.getCameraOrbit?.();let a0=orbit?orbit.theta*180/Math.PI:q.azimuth;let p0=orbit?orbit.phi*180/Math.PI:q.polar;
+ // 再回転では、指で動かしていた向きに左右されないよう、正解が見える角度にそろえる。
+ if(fromFront){a0=q.finishAzimuth??0;p0=q.finishPolar??75;model.cameraOrbit=`${a0}deg ${p0}deg auto`;if(typeof model.jumpCameraToGoal==='function')model.jumpCameraToGoal();}
  // モデルごとに停止角度を指定。各モデルの向きはiPhoneで後から調整可能。
  const target=q.finishAzimuth??0;
  const mod=((a0%360)+360)%360;
  const toFront=((target-mod)%360+360)%360;
- const degrees=360+toFront,start=performance.now(),duration=2600;
+ const degrees=fromFront?360:360+toFront,start=performance.now(),duration=2600;
  const frame=now=>{const t=Math.min(1,(now-start)/duration),smooth=t<.5?2*t*t:1-Math.pow(-2*t+2,2)/2;
  model.cameraOrbit=`${a0+degrees*smooth}deg ${p0}deg auto`;
  if(t<1)animationId=requestAnimationFrame(frame);else{animationId=0;model.cameraOrbit=`${a0+degrees}deg ${p0}deg auto`;}};
@@ -103,7 +105,7 @@ function render(){
  }else if(phase==='correct'){
   prompt.textContent=`${questionIndex+1} / ${order.length}　${q.name}！`;
   setAction(left,questionIndex===order.length-1?'けっかをみる':'つぎへ',nextQuestion);
-  setAction(right,'もういっかい回す',spinOnce);
+  setAction(right,'もういっかい回す',()=>spinOnce(true));
  }else if(phase==='wrong'){
   prompt.textContent='よく見てみよう！';
   setAction(left,'もういちど',()=>{clearFeedback();phase='observe';render()});setAction(right,'むきをもどす',resetCamera);
