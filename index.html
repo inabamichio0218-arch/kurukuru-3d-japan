@@ -45,7 +45,7 @@ const questions=[
  {name:'だるま',wrong:'こけし',src:'voxel-daruma.glb',azimuth:180,polar:75},
  {name:'まねきねこ',wrong:'うさぎ',src:'voxel-manekineko.glb',azimuth:180,polar:75},
  {name:'にんじゃ',wrong:'さむらい',src:'voxel-ninja.glb',azimuth:180,polar:75},
- {name:'たいやき',wrong:'さかな',src:'voxel-taiyaki.glb',azimuth:180,polar:75},
+ {name:'たいやき',wrong:'さかな',src:'voxel-taiyaki.glb',azimuth:90,polar:75,finishAzimuth:180},
  {name:'おにぎり',wrong:'おもち',src:'voxel-onigiri.glb',azimuth:180,polar:75}
 ];
 let order=[],questionIndex=0,phase='observe',answerIndex=0,animationId=0,feedbackTimer=0,loadToken=0;
@@ -55,8 +55,10 @@ function stopSpin(){if(animationId){cancelAnimationFrame(animationId);animationI
 function resetCamera(){stopSpin();model.autoRotate=false;const q=current();model.cameraOrbit=`${q.azimuth}deg ${q.polar}deg auto`;if(typeof model.jumpCameraToGoal==='function')model.jumpCameraToGoal();}
 function spinOnce(){
  stopSpin();const q=current();const orbit=model.getCameraOrbit?.();const a0=orbit?orbit.theta*180/Math.PI:q.azimuth;const p0=orbit?orbit.phi*180/Math.PI:q.polar;
- // GLBの正面を0°として扱う。向きは各アイテムをSafariで要確認。
- const mod=((a0%360)+360)%360,toFront=(360-mod)%360;
+ // モデルごとに停止角度を指定。たい焼きは薄い側面から始め、魚の形が見える向きで止める。
+ const target=q.finishAzimuth??0;
+ const mod=((a0%360)+360)%360;
+ const toFront=((target-mod)%360+360)%360;
  const degrees=360+toFront,start=performance.now(),duration=2600;
  const frame=now=>{const t=Math.min(1,(now-start)/duration),smooth=t<.5?2*t*t:1-Math.pow(-2*t+2,2)/2;
  model.cameraOrbit=`${a0+degrees*smooth}deg ${p0}deg auto`;
