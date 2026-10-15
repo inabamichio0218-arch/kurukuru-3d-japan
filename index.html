@@ -4,7 +4,7 @@
 <meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=5"/>
 <meta name="theme-color" content="#397c21"/>
 <meta name="apple-mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
-<title>マイクラ風 くるくるクイズ Japan編 Ver.9</title>
+<title>マイクラ風 くるくるクイズ Japan編 Ver.10</title>
 <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -77,10 +77,11 @@ const questions=[
  {name:"にほんのはた",wrong:"ゆうびん",src:'voxel-flagjp.glb',azimuth:90,polar:75},
  {name:"とりい",wrong:"もん",src:'voxel-torii.glb',azimuth:0,polar:75}
 ];
+const builtInAngles={"voxel-daruma.glb":{"azimuth":180.0,"polar":75.0,"finishAzimuth":0.0,"finishPolar":75.0},"voxel-manekineko.glb":{"azimuth":180.0,"polar":75.0,"finishAzimuth":0.0,"finishPolar":75.0},"voxel-ninja.glb":{"azimuth":226.5,"polar":28.7,"finishAzimuth":0.0,"finishPolar":75.0},"voxel-taiyaki.glb":{"azimuth":90.0,"polar":75.0,"finishAzimuth":180.0,"finishPolar":75.0},"voxel-onigiri.glb":{"azimuth":90.0,"polar":75.0,"finishAzimuth":0.0,"finishPolar":75.0},"voxel-fan.glb":{"azimuth":90.0,"polar":75.0,"finishAzimuth":0.0,"finishPolar":75.0},"voxel-postbox.glb":{"azimuth":2.3,"polar":15.0,"finishAzimuth":0.0,"finishPolar":75.0},"voxel-lantern.glb":{"azimuth":-42.7,"polar":165.0,"finishAzimuth":0.0,"finishPolar":75.0},"voxel-stonelantern.glb":{"azimuth":180.0,"polar":15.0,"finishAzimuth":0.0,"finishPolar":75.0},"voxel-bonsai.glb":{"azimuth":3.0,"polar":165.0,"finishAzimuth":0.0,"finishPolar":75.0},"voxel-bamboo.glb":{"azimuth":90.0,"polar":75.0,"finishAzimuth":0.0,"finishPolar":75.0},"voxel-sakura.glb":{"azimuth":148.0,"polar":165.0,"finishAzimuth":0.0,"finishPolar":75.0},"voxel-dango.glb":{"azimuth":90.8,"polar":46.0,"finishAzimuth":0.0,"finishPolar":75.0},"voxel-bento.glb":{"azimuth":-8.4,"polar":165.0,"finishAzimuth":0.0,"finishPolar":75.0},"voxel-sumo.glb":{"azimuth":-87.6,"polar":165.0,"finishAzimuth":0.0,"finishPolar":75.0},"voxel-kokeshi.glb":{"azimuth":-73.9,"polar":15.0,"finishAzimuth":0.0,"finishPolar":75.0},"voxel-samurai.glb":{"azimuth":179.2,"polar":15.0,"finishAzimuth":0.0,"finishPolar":75.0},"voxel-geisha.glb":{"azimuth":180.0,"polar":15.0,"finishAzimuth":0.0,"finishPolar":75.0},"voxel-risingsun.glb":{"azimuth":90.0,"polar":75.0,"finishAzimuth":0.0,"finishPolar":75.0},"voxel-fuji.glb":{"azimuth":180.0,"polar":15.0,"finishAzimuth":0.0,"finishPolar":75.0},"voxel-skytree.glb":{"azimuth":173.9,"polar":15.0,"finishAzimuth":0.0,"finishPolar":75.0},"voxel-tokyotower.glb":{"azimuth":167.0,"polar":165.0,"finishAzimuth":0.0,"finishPolar":75.0},"voxel-castle.glb":{"azimuth":-17.5,"polar":165.0,"finishAzimuth":0.0,"finishPolar":75.0},"voxel-pagoda.glb":{"azimuth":-33.5,"polar":165.0,"finishAzimuth":0.0,"finishPolar":75.0},"voxel-flagjp.glb":{"azimuth":90.0,"polar":75.0,"finishAzimuth":0.0,"finishPolar":75.0},"voxel-torii.glb":{"azimuth":-87.6,"polar":15.8,"finishAzimuth":0.0,"finishPolar":75.0}};
 const adjusting=new URLSearchParams(location.search).get('adjust')==='1';
 const storageKey='kurukuru-japan-angle-config-v1';
 let storedAngles={};try{storedAngles=JSON.parse(localStorage.getItem(storageKey)||'{}')}catch(e){}
-for(const q of questions){if(storedAngles[q.src])Object.assign(q,storedAngles[q.src]);}
+for(const q of questions){if(builtInAngles[q.src])Object.assign(q,builtInAngles[q.src]);if(adjusting && storedAngles[q.src])Object.assign(q,storedAngles[q.src]);}
 let selectedCourse=5;
 let order=[],questionIndex=0,phase='observe',answerIndex=0,animationId=0,feedbackTimer=0,loadToken=0;
 const current=()=>questions[order[questionIndex]];
@@ -92,13 +93,13 @@ function spinOnce(fromFront=false){
  // 再回転では、指で動かしていた向きに左右されないよう、正解が見える角度にそろえる。
  if(fromFront){a0=q.finishAzimuth??0;p0=q.finishPolar??75;model.cameraOrbit=`${a0}deg ${p0}deg auto`;if(typeof model.jumpCameraToGoal==='function')model.jumpCameraToGoal();}
  // モデルごとに停止角度を指定。各モデルの向きはiPhoneで後から調整可能。
- const target=q.finishAzimuth??0;
+ const target=q.finishAzimuth??0, targetPolar=q.finishPolar??75;
  const mod=((a0%360)+360)%360;
  const toFront=((target-mod)%360+360)%360;
  const degrees=fromFront?360:360+toFront,start=performance.now(),duration=2600;
  const frame=now=>{const t=Math.min(1,(now-start)/duration),smooth=t<.5?2*t*t:1-Math.pow(-2*t+2,2)/2;
- model.cameraOrbit=`${a0+degrees*smooth}deg ${p0}deg auto`;
- if(t<1)animationId=requestAnimationFrame(frame);else{animationId=0;model.cameraOrbit=`${a0+degrees}deg ${p0}deg auto`;}};
+ model.cameraOrbit=`${a0+degrees*smooth}deg ${p0+(targetPolar-p0)*smooth}deg auto`;
+ if(t<1)animationId=requestAnimationFrame(frame);else{animationId=0;model.cameraOrbit=`${a0+degrees}deg ${targetPolar}deg auto`;}};
  animationId=requestAnimationFrame(frame);
 }
 function setAction(el,label,handler,show=true){el.textContent=label;el.hidden=!show;el.onclick=show?handler:null;el.setAttribute('aria-label',label);}
