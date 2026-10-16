@@ -31,6 +31,24 @@
 .backPicture{position:absolute;top:84.8%;left:5%;width:90%;height:12%;padding:0;border:0;background:transparent;cursor:pointer;touch-action:manipulation;-webkit-tap-highlight-color:transparent}
 .backPicture img{width:100%;height:100%;object-fit:contain;pointer-events:none}
 .backPicture:focus-visible{outline:3px solid #ffe36e;border-radius:40px}
+
+/* v13: iOS Safari / Facebook in-app browser gesture mitigation */
+html, body {
+  overscroll-behavior: none;
+  overscroll-behavior-x: none;
+  touch-action: pan-x pan-y;
+  -webkit-text-size-adjust: 100%;
+}
+.stage {
+  overscroll-behavior: none;
+  touch-action: none;
+  -webkit-touch-callout: none;
+}
+.viewer, .viewer model-viewer {
+  touch-action: none !important;
+  overscroll-behavior: contain;
+  -webkit-user-select: none;
+}
 </style>
 </head><body>
 <main class="stage" aria-label="マイクラ風 くるくるクイズ">
@@ -199,5 +217,23 @@ if(adjusting){
  $('previewEnd').onclick=()=>{const q=questions[Number(sel.value)];model.cameraOrbit=`${q.finishAzimuth??0}deg ${q.finishPolar??75}deg auto`;model.jumpCameraToGoal?.();};
  $('exportAngles').onclick=async()=>{const data=JSON.stringify(storedAngles,null,2);$('angleData').value=data;try{await navigator.clipboard.writeText(data);status.textContent='角度の設定をコピーしました。チャットに貼り付けてください。'}catch(e){$('angleData').focus();$('angleData').select();status.textContent='下のデータをコピーしてチャットへ貼り付けてください。'}};
  showSelected();
+}
+
+// Keep 3D gestures within the Web app instead of scrolling the underlying page.
+// Facebook's own edge-swipe navigation may still override this.
+const gestureStage = document.querySelector('.stage');
+const gestureViewer = document.querySelector('.viewer');
+if (gestureViewer) {
+  gestureViewer.addEventListener('touchmove', event => {
+    if (event.cancelable) event.preventDefault();
+  }, {passive:false});
+}
+// Prevent overscroll of the fixed screen, without blocking normal button taps.
+if (gestureStage) {
+  gestureStage.addEventListener('touchmove', event => {
+    if (event.cancelable && !event.target.closest('.adjustPanel, .infoPanel')) {
+      event.preventDefault();
+    }
+  }, {passive:false});
 }
 </script></body></html>
